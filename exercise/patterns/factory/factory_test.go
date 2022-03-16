@@ -20,13 +20,13 @@ func TestNewIRuleConfigParserFactory(t *testing.T) {
 				t: "xml",
 			},
 			want: &XmlRuleConfigParserFactory{},
-		},{
+		}, {
 			name: "yaml",
 			args: args{
 				t: "yaml",
 			},
 			want: &YamlRuleConfigParserFactory{},
-		},{
+		}, {
 			name: "json",
 			args: args{
 				t: "json",

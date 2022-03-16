@@ -20,7 +20,7 @@ func TestCreateRuleConfigParse(t *testing.T) {
 				configFormat: "xml",
 			},
 			want: NewXmlRuleConfigParse(),
-		},{
+		}, {
 			name: "yaml",
 			args: args{
 				configFormat: "yaml",

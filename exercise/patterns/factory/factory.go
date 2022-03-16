@@ -1,12 +1,10 @@
 package factory
 
-
 //define
 type JsonRuleConfigParse struct {
-
 }
 
-func (p *JsonRuleConfigParse) parse(content string) RuleConfig{
+func (p *JsonRuleConfigParse) parse(content string) RuleConfig {
 	return RuleConfig{}
 }
 
@@ -16,7 +14,6 @@ type IRuleConfigParserFactory interface {
 }
 
 type XmlRuleConfigParserFactory struct {
-
 }
 
 func (t *XmlRuleConfigParserFactory) createParser() IRuleConfigParse {
@@ -24,7 +21,6 @@ func (t *XmlRuleConfigParserFactory) createParser() IRuleConfigParse {
 }
 
 type YamlRuleConfigParserFactory struct {
-
 }
 
 func (t *YamlRuleConfigParserFactory) createParser() IRuleConfigParse {
@@ -32,7 +28,6 @@ func (t *YamlRuleConfigParserFactory) createParser() IRuleConfigParse {
 }
 
 type JsonRuleConfigParserFactory struct {
-
 }
 
 func (t *JsonRuleConfigParserFactory) createParser() IRuleConfigParse {

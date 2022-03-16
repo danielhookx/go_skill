@@ -1,6 +1,6 @@
 package _defer
 
-func anonymousClosure () int{
+func anonymousClosure() int {
 	var a = 0
 
 	defer func() {
@@ -10,7 +10,7 @@ func anonymousClosure () int{
 	return a
 }
 
-func namedClosure () (a int){
+func namedClosure() (a int) {
 	defer func() {
 		a++
 	}()
@@ -18,7 +18,7 @@ func namedClosure () (a int){
 	return a
 }
 
-func namedClosure2 () (a int){
+func namedClosure2() (a int) {
 	var b = 1
 
 	defer func() {
@@ -28,7 +28,7 @@ func namedClosure2 () (a int){
 	return a
 }
 
-func namedNotClosure () (a int){
+func namedNotClosure() (a int) {
 	var b = 1
 
 	defer func(b int) {

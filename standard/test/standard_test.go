@@ -22,16 +22,16 @@ func TestAbs(t *testing.T) {
 //}
 
 func TestPrintUser(t *testing.T) {
-	printUser := func(name string, age int) string{
-		return fmt.Sprintf("%s is %d years old", name , age)
+	printUser := func(name string, age int) string {
+		return fmt.Sprintf("%s is %d years old", name, age)
 	}
 	tests := []struct {
 		name string
-		User struct{
+		User struct {
 			name string
-			age int
+			age  int
 		}
-		id string
+		id   string
 		want string
 	}{
 		{
@@ -43,7 +43,7 @@ func TestPrintUser(t *testing.T) {
 				name: "张三",
 				age:  12,
 			},
-			id: "u1",
+			id:   "u1",
 			want: "张三 is 18 years old",
 		},
 		{
@@ -55,11 +55,11 @@ func TestPrintUser(t *testing.T) {
 				name: "李四",
 				age:  18,
 			},
-			id: "u2",
+			id:   "u2",
 			want: "李四 is 18 years old",
 		},
 	}
-		for _, test := range tests {
+	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
 			t.Log(test)
 			if got := printUser(test.User.name, test.User.age); got != test.want {
