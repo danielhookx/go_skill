@@ -3,12 +3,12 @@ package binary_tree
 import "fmt"
 
 type LinkedTreeNode struct {
-	val string
-	left *LinkedTreeNode
+	val   int
+	left  *LinkedTreeNode
 	right *LinkedTreeNode
 }
 
-func putSort(n *LinkedTreeNode, data string) {
+func putSort(n *LinkedTreeNode, data int) {
 	if n == nil {
 		n = &LinkedTreeNode{
 			val:   data,
@@ -28,7 +28,7 @@ func putSort(n *LinkedTreeNode, data string) {
 	}
 }
 
-func putSort2(tree *LinkedTreeNode, data string) {
+func putSort2(tree *LinkedTreeNode, data int) {
 	if tree == nil {
 		tree = &LinkedTreeNode{
 			val:   data,
@@ -39,7 +39,7 @@ func putSort2(tree *LinkedTreeNode, data string) {
 	}
 
 	var p = tree
-	for p != nil{
+	for p != nil {
 		if p.val > data {
 			if p.right == nil {
 				p.right = &LinkedTreeNode{
@@ -50,7 +50,7 @@ func putSort2(tree *LinkedTreeNode, data string) {
 				return
 			}
 			p = p.right
-		}else if p.val < data {
+		} else if p.val < data {
 			if p.left == nil {
 				p.left = &LinkedTreeNode{
 					val:   data,
@@ -62,6 +62,10 @@ func putSort2(tree *LinkedTreeNode, data string) {
 			p = p.left
 		}
 	}
+}
+
+func BinarySearchTree() {
+
 }
 
 func preOrder(n *LinkedTreeNode) {
