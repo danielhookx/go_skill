@@ -1,20 +1,6 @@
-package subset
+package _78
 
 func subsets(nums []int) [][]int {
-	result := make([][]int, 1)
-	result[0] = nums
-	for i, _ := range nums {
-		ss := make([]int, len(nums)-1)
-		copy(ss[:i], nums[:i])
-		copy(ss[i:], nums[i+1:])
-		if rlt := subsets(ss); len(rlt) > 0 {
-			result = append(result, rlt...)
-		}
-	}
-	return result
-}
-
-func subsets2(nums []int) [][]int {
 	// 保存最终结果
 	result := make([][]int, 0)
 	// 保存中间结果

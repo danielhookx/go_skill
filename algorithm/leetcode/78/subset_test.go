@@ -1,4 +1,4 @@
-package subset
+package _78
 
 import (
 	"testing"
@@ -6,8 +6,4 @@ import (
 
 func TestSubset(t *testing.T) {
 	t.Log(subsets([]int{1, 2, 3}))
-}
-
-func Test_subsets2(t *testing.T) {
-	t.Log(subsets2([]int{1, 2, 3}))
 }
