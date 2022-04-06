@@ -51,3 +51,11 @@ func Test_postOrder(t *testing.T) {
 func Test_preOrder(t *testing.T) {
 	preOrder(head)
 }
+
+func TestBFSByCycle(t *testing.T) {
+	t.Log(BFSByCycle(head))
+}
+
+func TestDFSByRecursively(t *testing.T) {
+	t.Log(DFSByRecursively(head))
+}
