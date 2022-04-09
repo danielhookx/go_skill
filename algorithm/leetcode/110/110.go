@@ -21,22 +21,22 @@ func isBalanced(root *TreeNode) bool {
 	return true
 }
 
-func depth(root *TreeNode) int{
+func depth(root *TreeNode) int {
 	if root == nil {
 		return 0
 	}
 	ldeep := depth(root.Left)
 	rdeep := depth(root.Right)
-	if ldeep < 0 || rdeep < 0{
+	if ldeep < 0 || rdeep < 0 {
 		return -1
 	}
 	if ldeep > rdeep {
-		if ldeep - rdeep > 1 {
+		if ldeep-rdeep > 1 {
 			return -1
 		}
 		return ldeep + 1
 	} else {
-		if rdeep - ldeep > 1 {
+		if rdeep-ldeep > 1 {
 			return -1
 		}
 		return rdeep + 1
