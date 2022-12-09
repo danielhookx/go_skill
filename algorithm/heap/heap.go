@@ -1,16 +1,12 @@
 package heap
 
-type Interface interface {
-	Less(p Interface) bool
-}
-
 type Heap struct {
-	nodes    []Interface
+	nodes    []int
 	last     int
 	maxCount int
 }
 
-func BuildHeap(src []Interface) *Heap {
+func BuildHeap(src []int) *Heap {
 	h := Heap{
 		nodes:    src,
 		last:     len(src) - 1,
@@ -22,9 +18,9 @@ func BuildHeap(src []Interface) *Heap {
 	return &h
 }
 
-func BuildHeap2(src []Interface) *Heap {
+func BuildHeap2(src []int) *Heap {
 	h := Heap{
-		nodes:    make([]Interface, 0),
+		nodes:    make([]int, 0),
 		last:     -1,
 		maxCount: -1,
 	}
@@ -34,7 +30,7 @@ func BuildHeap2(src []Interface) *Heap {
 	return &h
 }
 
-func (h *Heap) Add(item Interface) {
+func (h *Heap) Add(item int) {
 	if cap(h.nodes) <= h.last+1 {
 		//grow
 		h.grow(cap(h.nodes))
@@ -44,7 +40,7 @@ func (h *Heap) Add(item Interface) {
 	h.up(h.last)
 }
 
-func (h *Heap) Pop() Interface {
+func (h *Heap) Pop() int {
 	if h.last <= 0 {
 		return nil
 	}

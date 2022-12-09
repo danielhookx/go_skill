@@ -1,5 +1,12 @@
 package _78
 
+//Subsets
+//Given an integer array nums of unique elements, return all possible subsets (the power set).
+//
+//The solution set must not contain duplicate subsets. Return the solution in any order.
+//
+//link:https://leetcode-cn.com/problems/subsets/
+
 func subsets(nums []int) [][]int {
 	// 保存最终结果
 	result := make([][]int, 0)

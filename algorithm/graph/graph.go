@@ -2,34 +2,9 @@ package graph
 
 import (
 	"fmt"
-	"github.com/oofpgDLD/go_skill/algorithm/list"
-	"github.com/oofpgDLD/go_skill/algorithm/queue"
-	"github.com/oofpgDLD/go_skill/algorithm/stack"
+
+	"github.com/zeromicro/go-zero/core/queue"
 )
-
-type UndirectedGraph struct {
-	v   int //
-	adj map[interface{}]*list.LinkedList
-}
-
-func NewUndirectedGraph(v int) *UndirectedGraph {
-	g := &UndirectedGraph{
-		v:   v,
-		adj: make(map[interface{}]*list.LinkedList),
-	}
-	return g
-}
-
-func (g *UndirectedGraph) AddEdge(s, t interface{}) {
-	if _, ok := g.adj[s]; !ok {
-		g.adj[s] = list.NewLinkedList()
-	}
-	if _, ok := g.adj[t]; !ok {
-		g.adj[t] = list.NewLinkedList()
-	}
-	g.adj[s].Add(t)
-	g.adj[t].Add(s)
-}
 
 //
 func BFS(g *UndirectedGraph, s interface{}) {

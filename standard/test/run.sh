@@ -3,10 +3,10 @@
 echo "print"
 
 read -p "请输入一个数字" num
-if [[ "$num" =~ ^|0-9|+$ ]]; then
-  echo $funtype
+if [[ $num =~ ^|0-9|+$ ]]; then
+    echo $funtype
 else
-  echo "error"
+    echo "error"
 fi
 
 function list() {

@@ -1,8 +1,9 @@
 package singleton
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestGetInstance(t *testing.T) {

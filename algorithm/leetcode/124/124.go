@@ -16,30 +16,21 @@ type TreeNode struct {
 }
 
 func maxPathSum(root *TreeNode) int {
+	_, lfmax := maxPath(root)
+	return lfmax
+}
+
+func maxPath(root *TreeNode) (int, int) {
 	if root == nil {
-		return 0
+		return 0, -(1 << 31)
 	}
+	//value 1 is relatively max, value 2 is final max
+	lramx, lfmax := maxPath(root.Left)
+	rramx, rfmax := maxPath(root.Right)
 
-	maxsum := root.Val
-	justLeft := false
-	if root.Left != nil {
-		lmps := maxPathSum(root.Left)
-		if m := max(maxsum, maxsum+lmps); m < lmps {
-			maxsum = lmps
-			justLeft = true
-		} else {
-			maxsum = m
-		}
-	}
-
-	if root.Right != nil {
-		rmps := maxPathSum(root.Right)
-		if justLeft {
-			return max(maxsum, rmps)
-		}
-		maxsum = max(maxsum, max(maxsum+rmps, rmps))
-	}
-	return maxsum
+	singlePath := max(max(lramx, rramx)+root.Val, 0)
+	maxpath := max(max(lfmax, rfmax), root.Val+lramx+rramx)
+	return singlePath, maxpath
 }
 
 func max(a, b int) int {
