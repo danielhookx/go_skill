@@ -1,6 +1,8 @@
 package slice
 
-import "testing"
+import (
+	"testing"
+)
 
 func Test_InitSlice(t *testing.T) {
 	// Using slice literal:
@@ -48,6 +50,17 @@ func Test_SliceAppend(t *testing.T) {
 	//s1:len=1025, cap=1280
 	//new_cap = old_cap * 1.25
 	t.Logf("s1:len=%d, cap=%d \n", len(s1), cap(s1))
+}
+
+func sliceGraw(s []int) {
+	s2 := []int{1, 2, 3, 4, 5}
+	s = append(s, s2...)
+}
+
+func Test_SliceAppendCallFunc(t *testing.T) {
+	s := make([]int, 0)
+	sliceGraw(s)
+	t.Log(len(s), cap(s))
 }
 
 func Benchmark_SliceCopy(b *testing.B) {
