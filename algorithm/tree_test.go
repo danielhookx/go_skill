@@ -39,13 +39,13 @@ func TestPostOrder(t *testing.T) {
 	assert.EqualValues(t, []int{5, 9, 4, 1, 8, 2, 7, 3, 6}, rlt)
 }
 
-func TestBFS(t *testing.T) {
+func TestTreeBFS(t *testing.T) {
 	l1 := []string{"6"}
 	l2 := []string{"1", "3"}
 	l3 := []string{"9", "4", "2", "7"}
 	l4 := []string{"5", "nil", "nil", "nil", "8", "nil", "nil", "nil"}
 	root := NewTree(l1, l2, l3, l4)
-	rlt := BFS(root)
+	rlt := TreeBFS(root)
 	assert.EqualValues(t, [][]int{
 		{6},
 		{1, 3},
@@ -60,7 +60,45 @@ func TestSearchTree(t *testing.T) {
 	for _, v := range src {
 		st.Put(v)
 	}
+	n := st.Find(9)
+	assert.EqualValues(t, 9, n.Val)
 	inOrderRlt := make([]int, 0)
 	InOrder(st.root, &inOrderRlt)
 	assert.EqualValues(t, []int{1, 2, 3, 4, 5, 6, 7, 8, 9}, inOrderRlt)
+}
+
+func TestSearchTreeDel(t *testing.T) {
+	st := &SearchTree{}
+	src := []int{5, 9, 4, 1, 8, 2, 7, 3, 6, 10}
+	for _, v := range src {
+		st.Put(v)
+	}
+	st.Del(6)
+	st.Del(9)
+	st.Del(4)
+	inOrderRlt := make([]int, 0)
+	InOrder(st.root, &inOrderRlt)
+	assert.EqualValues(t, []int{1, 2, 3, 5, 7, 8, 10}, inOrderRlt)
+	st.Del(5)
+	inOrderRlt = make([]int, 0)
+	InOrder(st.root, &inOrderRlt)
+	assert.EqualValues(t, []int{1, 2, 3, 7, 8, 10}, inOrderRlt)
+
+	st = &SearchTree{}
+	src = []int{1, 2, 3}
+	for _, v := range src {
+		st.Put(v)
+	}
+	st.Del(1)
+	inOrderRlt = make([]int, 0)
+	InOrder(st.root, &inOrderRlt)
+	assert.EqualValues(t, []int{2, 3}, inOrderRlt)
+	st.Del(2)
+	inOrderRlt = make([]int, 0)
+	InOrder(st.root, &inOrderRlt)
+	assert.EqualValues(t, []int{3}, inOrderRlt)
+	st.Del(3)
+	inOrderRlt = make([]int, 0)
+	InOrder(st.root, &inOrderRlt)
+	assert.EqualValues(t, []int{}, inOrderRlt)
 }

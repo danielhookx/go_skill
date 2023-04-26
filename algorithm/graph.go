@@ -24,3 +24,47 @@ func (g *UndirectedGraph) AddEdge(s, t int) {
 	g.adj[s].Add(t)
 	g.adj[t].Add(s)
 }
+
+func UndirectedGraphBFS(g *UndirectedGraph, start int) []int {
+	ret := make([]int, 0)
+	q := NewQueue()
+	visited := make(map[int]bool)
+	q.EnQueue(start)
+	visited[start] = true
+
+	for q.Len() > 0 {
+		vertex := q.DeQueue()
+		l := g.adj[vertex]
+		for node := l.Head(); node != nil; node = node.Next {
+			if v, ok := visited[node.Val]; v && ok {
+				continue
+			}
+			q.EnQueue(node.Val)
+			visited[node.Val] = true
+		}
+		ret = append(ret, vertex)
+	}
+	return ret
+}
+
+func UndirectedGraphDFS(g *UndirectedGraph, start int) []int {
+	ret := make([]int, 0)
+	q := NewStack()
+	visited := make(map[int]bool)
+	q.Push(start)
+	visited[start] = true
+
+	for q.Len() > 0 {
+		vertex := q.Pop()
+		l := g.adj[vertex]
+		for node := l.Head(); node != nil; node = node.Next {
+			if v, ok := visited[node.Val]; v && ok {
+				continue
+			}
+			q.Push(node.Val)
+			visited[node.Val] = true
+		}
+		ret = append(ret, vertex)
+	}
+	return ret
+}

@@ -56,3 +56,7 @@ func (l *SingleSetList) Add(v int) {
 		l.len++
 	}
 }
+
+func (l *SingleSetList) Head() *ListNode {
+	return l.head
+}

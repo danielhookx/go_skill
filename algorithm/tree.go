@@ -42,7 +42,7 @@ func NewTree(level ...[]string) *TreeNode {
 			indexQueue = indexQueue[1:]
 
 			leftChildIndex := index*2 + 1
-			rightClildIndex := index*2 + 2
+			rightChildIndex := index*2 + 2
 			if leftChildIndex < len(sum) {
 				lVal, err := strconv.ParseInt(sum[leftChildIndex], 10, 64)
 				if err == nil {
@@ -56,8 +56,8 @@ func NewTree(level ...[]string) *TreeNode {
 				}
 			}
 
-			if rightClildIndex < len(sum) {
-				rVal, err := strconv.ParseInt(sum[rightClildIndex], 10, 64)
+			if rightChildIndex < len(sum) {
+				rVal, err := strconv.ParseInt(sum[rightChildIndex], 10, 64)
 				if err == nil {
 					node.Right = &TreeNode{
 						Val:   int(rVal),
@@ -65,7 +65,7 @@ func NewTree(level ...[]string) *TreeNode {
 						Right: nil,
 					}
 					queue = append(queue, node.Right)
-					indexQueue = append(indexQueue, rightClildIndex)
+					indexQueue = append(indexQueue, rightChildIndex)
 				}
 			}
 		}
@@ -100,7 +100,7 @@ func PostOrder(n *TreeNode, rlt *[]int) {
 	*rlt = append(*rlt, n.Val)
 }
 
-func BFS(root *TreeNode) [][]int {
+func TreeBFS(root *TreeNode) [][]int {
 	if root == nil {
 		return nil
 	}
@@ -134,12 +134,86 @@ type SearchTree struct {
 	root *TreeNode
 }
 
+func (r *SearchTree) Find(data int) *TreeNode {
+	_, n := r.find(nil, r.root, data)
+	return n
+}
+
+func (r *SearchTree) find(pre, n *TreeNode, data int) (*TreeNode, *TreeNode) {
+	if n == nil {
+		return nil, nil
+	}
+	if n.Val == data {
+		return pre, n
+	}
+	if n.Val > data {
+		return r.find(n, n.Left, data)
+	} else {
+		return r.find(n, n.Right, data)
+	}
+}
+
 func (r *SearchTree) Put(data int) {
 	if r.root == nil {
 		r.root = &TreeNode{Val: data}
 		return
 	}
 	r.sortPut(r.root, data)
+}
+
+func (r *SearchTree) Del(data int) {
+	pre, n := r.find(nil, r.root, data)
+	if n == nil {
+		return
+	}
+	if pre == nil {
+		pre = &TreeNode{Left: n}
+		r.del(pre, n)
+		r.root = pre.Left
+		return
+	}
+	r.del(pre, n)
+}
+
+func (r *SearchTree) del(pre, n *TreeNode) {
+	// node have no child
+	if n.Left == nil && n.Right == nil {
+		if pre.Left == n {
+			pre.Left = nil
+		}
+		if pre.Right == n {
+			pre.Right = nil
+		}
+		return
+	}
+	// node have only one child
+	var next *TreeNode
+	if n.Left == nil && n.Right != nil {
+		next = n.Right
+	}
+	if n.Right == nil && n.Left != nil {
+		next = n.Left
+	}
+	if next != nil {
+		if pre.Left == n {
+			pre.Left = next
+		}
+		if pre.Right == n {
+			pre.Right = next
+		}
+		return
+	}
+	// have both child
+	preMin, min := r.min(n, n.Right)
+	n.Val = min.Val
+	r.del(preMin, min)
+}
+
+func (r *SearchTree) min(pre, n *TreeNode) (*TreeNode, *TreeNode) {
+	if n.Left != nil {
+		return r.min(n, n.Left)
+	}
+	return pre, n
 }
 
 func (r *SearchTree) sortPut(n *TreeNode, data int) {
