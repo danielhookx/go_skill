@@ -27,7 +27,7 @@ func (g *UndirectedGraph) AddEdge(s, t int) {
 
 func UndirectedGraphBFS(g *UndirectedGraph, start int) []int {
 	ret := make([]int, 0)
-	q := NewQueue()
+	q := NewQueue[int]()
 	visited := make(map[int]bool)
 	q.EnQueue(start)
 	visited[start] = true

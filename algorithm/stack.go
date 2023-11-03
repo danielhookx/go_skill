@@ -1,28 +1,28 @@
 package algorithm
 
-type Stack struct {
-	stack []int
+type Stack[T Any] struct {
+	stack []T
 }
 
-func NewStack() *Stack {
-	return &Stack{
-		stack: make([]int, 0),
+func NewStack[T Any]() *Stack[T] {
+	return &Stack[T]{
+		stack: make([]T, 0),
 	}
 }
 
-func (s *Stack) Push(item int) {
+func (s *Stack[T]) Push(item T) {
 	s.stack = append(s.stack, item)
 }
 
-func (s *Stack) Pop() int {
+func (s *Stack[T]) Pop() T {
 	if len(s.stack) == 0 {
-		return 0
+		return *new(T)
 	}
 	v := s.stack[len(s.stack)-1]
 	s.stack = s.stack[:len(s.stack)-1]
 	return v
 }
 
-func (s *Stack) Len() int {
+func (s *Stack[T]) Len() int {
 	return len(s.stack)
 }

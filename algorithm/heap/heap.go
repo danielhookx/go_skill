@@ -1,7 +1,7 @@
 package heap
 
-type Heap struct {
-	nodes    []int
+type Heap[T int] struct {
+	nodes    []T
 	last     int
 	maxCount int
 }
@@ -30,7 +30,7 @@ func BuildHeap2(src []int) *Heap {
 	return &h
 }
 
-func (h *Heap) Add(item int) {
+func (h *Heap[T]) Add(item T) {
 	if cap(h.nodes) <= h.last+1 {
 		//grow
 		h.grow(cap(h.nodes))
@@ -40,9 +40,9 @@ func (h *Heap) Add(item int) {
 	h.up(h.last)
 }
 
-func (h *Heap) Pop() int {
+func (h *Heap[T]) Pop() T {
 	if h.last <= 0 {
-		return nil
+		return *new(T)
 	}
 	h.swap(0, h.last)
 	h.last--
@@ -50,7 +50,7 @@ func (h *Heap) Pop() int {
 	return h.nodes[h.last+1]
 }
 
-func (h *Heap) up(j int) {
+func (h *Heap[T]) up(j T) {
 	for {
 		i := (j - 1) / 2 //parent
 		if i >= j || h.nodes[j].Less(h.nodes[i]) {
@@ -61,7 +61,7 @@ func (h *Heap) up(j int) {
 	}
 }
 
-func (h *Heap) down(i int) {
+func (h *Heap[T]) down(i T) {
 	for {
 		//left
 		j1 := 2*i + 1
@@ -80,15 +80,15 @@ func (h *Heap) down(i int) {
 	}
 }
 
-func (h *Heap) swap(i, j int) {
+func (h *Heap[T]) swap(i, j T) {
 	h.nodes[i], h.nodes[j] = h.nodes[j], h.nodes[i]
 }
 
-func (h *Heap) grow(size int) {
+func (h *Heap[T]) grow(size int) {
 	if size == 0 {
 		size = 100
 	}
-	new := make([]Interface, cap(h.nodes)+size)
+	new := make([]T, cap(h.nodes)+size)
 	copy(new, h.nodes)
 	h.nodes = new
 }
