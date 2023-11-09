@@ -1,4 +1,4 @@
-package algorithm
+package types
 
 type SingleListNode[T Any] struct {
 	Val  T

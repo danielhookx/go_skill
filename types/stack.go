@@ -1,4 +1,4 @@
-package algorithm
+package types
 
 type Stack[T Any] struct {
 	stack []T

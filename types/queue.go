@@ -1,4 +1,4 @@
-package algorithm
+package types
 
 type Queue[T Any] struct {
 	queue []T

@@ -1,4 +1,4 @@
-package algorithm
+package types
 
 type SearchTree[T Orderliness] struct {
 	root *TreeNode[T]

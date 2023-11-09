@@ -1,13 +1,13 @@
-package heap
+package types
 
-type Heap[T int] struct {
+type MaxHeap[T Orderliness] struct {
 	nodes    []T
 	last     int
 	maxCount int
 }
 
-func BuildHeap(src []int) *Heap {
-	h := Heap{
+func HeadBuildHeap[T Orderliness](src []T) *MaxHeap[T] {
+	h := MaxHeap[T]{
 		nodes:    src,
 		last:     len(src) - 1,
 		maxCount: len(src),
@@ -18,9 +18,9 @@ func BuildHeap(src []int) *Heap {
 	return &h
 }
 
-func BuildHeap2(src []int) *Heap {
-	h := Heap{
-		nodes:    make([]int, 0),
+func TailBuildHeap[T Orderliness](src []T) *MaxHeap[T] {
+	h := MaxHeap[T]{
+		nodes:    make([]T, 0),
 		last:     -1,
 		maxCount: -1,
 	}
@@ -30,7 +30,7 @@ func BuildHeap2(src []int) *Heap {
 	return &h
 }
 
-func (h *Heap[T]) Add(item T) {
+func (h *MaxHeap[T]) Add(item T) {
 	if cap(h.nodes) <= h.last+1 {
 		//grow
 		h.grow(cap(h.nodes))
@@ -40,7 +40,7 @@ func (h *Heap[T]) Add(item T) {
 	h.up(h.last)
 }
 
-func (h *Heap[T]) Pop() T {
+func (h *MaxHeap[T]) Pop() T {
 	if h.last <= 0 {
 		return *new(T)
 	}
@@ -50,10 +50,10 @@ func (h *Heap[T]) Pop() T {
 	return h.nodes[h.last+1]
 }
 
-func (h *Heap[T]) up(j T) {
+func (h *MaxHeap[T]) up(j int) {
 	for {
 		i := (j - 1) / 2 //parent
-		if i >= j || h.nodes[j].Less(h.nodes[i]) {
+		if i >= j || h.nodes[j] < h.nodes[i] {
 			break
 		}
 		h.swap(i, j)
@@ -61,7 +61,7 @@ func (h *Heap[T]) up(j T) {
 	}
 }
 
-func (h *Heap[T]) down(i T) {
+func (h *MaxHeap[T]) down(i int) {
 	for {
 		//left
 		j1 := 2*i + 1
@@ -69,10 +69,10 @@ func (h *Heap[T]) down(i T) {
 			break
 		}
 		j := j1
-		if j2 := j1 + 1; j2 <= h.last && !h.nodes[j2].Less(h.nodes[j1]) {
+		if j2 := j1 + 1; j2 <= h.last && h.nodes[j1] <= h.nodes[j2] {
 			j = j2
 		}
-		if !h.nodes[i].Less(h.nodes[j]) {
+		if h.nodes[j] <= h.nodes[i] {
 			break
 		}
 		h.swap(i, j)
@@ -80,11 +80,11 @@ func (h *Heap[T]) down(i T) {
 	}
 }
 
-func (h *Heap[T]) swap(i, j T) {
+func (h *MaxHeap[T]) swap(i, j int) {
 	h.nodes[i], h.nodes[j] = h.nodes[j], h.nodes[i]
 }
 
-func (h *Heap[T]) grow(size int) {
+func (h *MaxHeap[T]) grow(size int) {
 	if size == 0 {
 		size = 100
 	}
