@@ -5,13 +5,13 @@ import (
 	"strconv"
 )
 
-type TreeNodeI[T Any] interface {
+type TreeNodeI[T any] interface {
 	Val() T
 	Left() TreeNodeI[T]
 	Right() TreeNodeI[T]
 }
 
-func PreOrder[T Any](n TreeNodeI[T], rlt *[]T) {
+func PreOrder[T any](n TreeNodeI[T], rlt *[]T) {
 	if IsNil[TreeNodeI[T]](n) {
 		return
 	}
@@ -20,7 +20,7 @@ func PreOrder[T Any](n TreeNodeI[T], rlt *[]T) {
 	PreOrder(n.Right(), rlt)
 }
 
-func InOrder[T Any](n TreeNodeI[T], rlt *[]T) {
+func InOrder[T any](n TreeNodeI[T], rlt *[]T) {
 	if IsNil[TreeNodeI[T]](n) {
 		return
 	}
@@ -29,7 +29,7 @@ func InOrder[T Any](n TreeNodeI[T], rlt *[]T) {
 	InOrder(n.Right(), rlt)
 }
 
-func PostOrder[T Any](n TreeNodeI[T], rlt *[]T) {
+func PostOrder[T any](n TreeNodeI[T], rlt *[]T) {
 	if IsNil[TreeNodeI[T]](n) {
 		return
 	}
@@ -38,7 +38,7 @@ func PostOrder[T Any](n TreeNodeI[T], rlt *[]T) {
 	*rlt = append(*rlt, n.Val())
 }
 
-func TreeBFS[T Any](root TreeNodeI[T]) [][]T {
+func TreeBFS[T any](root TreeNodeI[T]) [][]T {
 	if IsNil[TreeNodeI[T]](root) {
 		return nil
 	}
@@ -67,7 +67,7 @@ func TreeBFS[T Any](root TreeNodeI[T]) [][]T {
 	return result
 }
 
-type TreeNode[T Any] struct {
+type TreeNode[T any] struct {
 	val   T
 	left  *TreeNode[T]
 	right *TreeNode[T]
@@ -85,23 +85,23 @@ func (t *TreeNode[T]) Right() TreeNodeI[T] {
 	return t.right
 }
 
-func ParseFunc[T Any]() func(val string) (T, error) {
+func ParseFunc[T any]() func(val string) (T, error) {
 	var t T
-	switch Any(t).(type) {
+	switch any(t).(type) {
 	case int:
 		return func(val string) (T, error) {
 			v, err := strconv.ParseInt(val, 10, 64)
 			if err != nil {
-				return Any(0).(T), err
+				return any(0).(T), err
 			}
-			return Any(int(v)).(T), nil
+			return any(int(v)).(T), nil
 		}
 	case string:
 		return func(val string) (T, error) {
 			if val == "" || val == "nil" {
-				return Any(val).(T), errors.New("nil")
+				return any(val).(T), errors.New("nil")
 			}
-			return Any(val).(T), nil
+			return any(val).(T), nil
 		}
 	default:
 		return func(val string) (T, error) {
@@ -110,7 +110,7 @@ func ParseFunc[T Any]() func(val string) (T, error) {
 	}
 }
 
-func NewTree[T Any](level ...[]string) *TreeNode[T] {
+func NewTree[T any](level ...[]string) *TreeNode[T] {
 	sum := make([]string, 0)
 	for _, l := range level {
 		sum = append(sum, l...)

@@ -17,10 +17,6 @@ type Orderliness interface {
 	Int | Uint | Float | ~string
 }
 
-type Any interface {
-	Int | Uint | Float | any
-}
-
 func IsNil[T any](t T) bool {
 	v := reflect.ValueOf(t)
 	kind := v.Kind()

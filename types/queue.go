@@ -1,10 +1,10 @@
 package types
 
-type Queue[T Any] struct {
+type Queue[T any] struct {
 	queue []T
 }
 
-func NewQueue[T Any]() *Queue[T] {
+func NewQueue[T any]() *Queue[T] {
 	return &Queue[T]{
 		queue: make([]T, 0),
 	}

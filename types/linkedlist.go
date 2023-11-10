@@ -1,11 +1,11 @@
 package types
 
-type SingleListNode[T Any] struct {
+type SingleListNode[T any] struct {
 	Val  T
 	Next *SingleListNode[T]
 }
 
-func NewSingleListFromArray[T Any](src []T) *SingleListNode[T] {
+func NewSingleListFromArray[T any](src []T) *SingleListNode[T] {
 	dummy := &SingleListNode[T]{}
 	p := dummy
 	for _, v := range src {
@@ -26,6 +26,7 @@ func NewSingleListSet[T comparable]() *SingleListSet[T] {
 	l := &SingleListSet[T]{
 		len: 0,
 		head: &SingleListNode[T]{
+			Val:  *new(T),
 			Next: nil,
 		},
 		tail:  nil,
@@ -50,7 +51,7 @@ func (l *SingleListSet[T]) Add(val T) {
 }
 
 func (l *SingleListSet[T]) Head() *SingleListNode[T] {
-	return l.head
+	return l.head.Next
 }
 
 func (l *SingleListSet[T]) Tail() *SingleListNode[T] {

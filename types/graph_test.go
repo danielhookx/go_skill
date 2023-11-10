@@ -1,4 +1,4 @@
-package algorithm
+package types
 
 import (
 	"testing"
@@ -7,14 +7,14 @@ import (
 )
 
 func TestUndirectedGraphBFS(t *testing.T) {
-	A := int('A' - 'A')
-	B := int('B' - 'A')
-	C := int('C' - 'A')
-	D := int('D' - 'A')
-	E := int('E' - 'A')
-	F := int('F' - 'A')
+	A := 'A'
+	B := 'B'
+	C := 'C'
+	D := 'D'
+	E := 'E'
+	F := 'F'
 
-	g := NewUndirectedGraph(6)
+	g := NewUndirectedGraph[rune](6)
 	g.AddEdge(A, B)
 	g.AddEdge(A, C)
 	g.AddEdge(B, A)
@@ -32,18 +32,18 @@ func TestUndirectedGraphBFS(t *testing.T) {
 	g.AddEdge(F, D)
 
 	ret := UndirectedGraphBFS(g, A)
-	assert.EqualValues(t, []int{A, B, C, D, E, F}, ret)
+	assert.EqualValues(t, []rune{A, B, C, D, E, F}, ret)
 }
 
 func TestUndirectedGraphDFS(t *testing.T) {
-	A := int('A' - 'A')
-	B := int('B' - 'A')
-	C := int('C' - 'A')
-	D := int('D' - 'A')
-	E := int('E' - 'A')
-	F := int('F' - 'A')
+	A := 'A'
+	B := 'B'
+	C := 'C'
+	D := 'D'
+	E := 'E'
+	F := 'F'
 
-	g := NewUndirectedGraph(6)
+	g := NewUndirectedGraph[rune](6)
 	g.AddEdge(A, B)
 	g.AddEdge(A, C)
 	g.AddEdge(B, A)
@@ -61,5 +61,5 @@ func TestUndirectedGraphDFS(t *testing.T) {
 	g.AddEdge(F, D)
 
 	ret := UndirectedGraphDFS(g, A)
-	assert.EqualValues(t, []int{A, B, C, D, E, F}, ret)
+	assert.EqualValues(t, []rune{A, B, C, D, E, F}, ret)
 }

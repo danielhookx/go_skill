@@ -1,10 +1,10 @@
 package types
 
-type Stack[T Any] struct {
+type Stack[T any] struct {
 	stack []T
 }
 
-func NewStack[T Any]() *Stack[T] {
+func NewStack[T any]() *Stack[T] {
 	return &Stack[T]{
 		stack: make([]T, 0),
 	}
