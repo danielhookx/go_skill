@@ -1,6 +1,6 @@
 package sort
 
-func InsertionSort(src []int) {
+func InsertionSort[T Orderliness](src []T) {
 	// i 表示无序空间的第一个元素位置
 	for i := 0; i < len(src); i++ {
 		// 从有序区间的尾部插入

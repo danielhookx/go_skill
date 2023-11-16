@@ -1,10 +1,10 @@
 package sort
 
-func QuickSort(src []int) {
+func QuickSort[T Orderliness](src []T) {
 	quickSort(src, 0, len(src))
 }
 
-func quickSort(src []int, lo, hi int) {
+func quickSort[T Orderliness](src []T, lo, hi int) {
 	if lo >= hi {
 		return
 	}
@@ -13,7 +13,7 @@ func quickSort(src []int, lo, hi int) {
 	quickSort(src, pivot+1, hi)
 }
 
-func partition(src []int, lo, hi int) int {
+func partition[T Orderliness](src []T, lo, hi int) int {
 	pivot := src[hi-1]
 	i := lo
 

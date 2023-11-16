@@ -1,6 +1,7 @@
 package sort
 
-func BubbleSort(src []int) {
+// min(O)=max(O)=avg(O): O(n^2)
+func BubbleSort[T Orderliness](src []T) {
 	// i 表示正在冒第几个泡泡
 	for i := 1; i <= len(src); i++ {
 		for j := 0; j < len(src)-i; j++ {
@@ -12,7 +13,8 @@ func BubbleSort(src []int) {
 	}
 }
 
-func BubbleSortFlag(src []int) {
+// min(O)= 1 max(O)=O(n^2)
+func BubbleSortFlag[T Orderliness](src []T) {
 	sorted := true
 	// i 表示正在冒第几个泡泡
 	for i := 1; i <= len(src); i++ {

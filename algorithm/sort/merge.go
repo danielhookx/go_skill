@@ -1,6 +1,6 @@
 package sort
 
-func MergeSort(src []int) {
+func MergeSort[T Orderliness](src []T) {
 	if len(src) < 2 {
 		return
 	}
@@ -9,8 +9,8 @@ func MergeSort(src []int) {
 	merge(src, len(src)/2)
 }
 
-func merge(src []int, mid int) {
-	merged := make([]int, len(src))
+func merge[T Orderliness](src []T, mid int) {
+	merged := make([]T, len(src))
 	left, right, current := 0, mid, 0
 	for left < mid && right < len(src) {
 		if src[left] < src[right] {

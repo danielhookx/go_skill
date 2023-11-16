@@ -1,6 +1,6 @@
 package sort
 
-func SelectionSort(src []int) {
+func SelectionSort[T Orderliness](src []T) {
 	// i 表示无序空间的第一个元素位置
 	for i := 0; i < len(src); i++ {
 		for j := i; j < len(src); j++ {

@@ -3,7 +3,8 @@ module github.com/oofpgDLD/go_skill
 go 1.20
 
 require (
-	github.com/stretchr/testify v1.8.1
+	github.com/danielhookx/xcontainer v0.0.0-20231116004839-4d19790e0760
+	github.com/stretchr/testify v1.8.4
 	github.com/zeromicro/go-zero v1.4.4
 	k8s.io/apimachinery v0.22.9
 )

@@ -7,7 +7,7 @@ import (
 )
 
 func TestNewCache(t *testing.T) {
-	c := NewCache(2)
+	c := NewCache[int, string](2)
 	c.Add(1, "1")
 	c.Add(2, "2")
 
