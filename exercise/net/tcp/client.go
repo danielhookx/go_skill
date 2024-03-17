@@ -8,7 +8,7 @@ import (
 	"strings"
 	"sync/atomic"
 
-	"github.com/oofpgDLD/go_skill/exercise/net/tcp/proto"
+	"github.com/danielhookx/go_skill/exercise/net/tcp/proto"
 )
 
 type Client struct {

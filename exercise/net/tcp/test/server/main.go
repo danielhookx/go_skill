@@ -7,7 +7,7 @@ import (
 	"os/signal"
 	"syscall"
 
-	xnet "github.com/oofpgDLD/go_skill/exercise/net/tcp"
+	xnet "github.com/danielhookx/go_skill/exercise/net/tcp"
 )
 
 func main() {

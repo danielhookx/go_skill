@@ -5,6 +5,12 @@ help: ## Display this help screen
 	@printf "[command]\n"
 	@grep -h -E '^([a-zA-Z_-]|\%)+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
+.PHONY: init
+
+init:
+	go install golang.org/x/tools/cmd/goimports@latest
+	go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.55.2
+
 .PHONY: fmt_proto fmt_shell fmt_go
 
 fmt: fmt_proto fmt_shell fmt_go ## 文件格式化
@@ -17,7 +23,7 @@ fmt_shell: ## shell文件格式化
 
 fmt_go: ## go源码格式化
 	@find . -name '*.go' -not -path "./vendor/*" | xargs gofmt -s -w
-	@find . -name '*.go' -not -path "./vendor/*" | xargs goimports -l -w
+	@find . -name '*.go' -not -path "./vendor/*" | xargs goimports -l -w -local "github.com/danielhookx/go_skill"
 
 .PHONY: checkgofmt linter linter_test
 

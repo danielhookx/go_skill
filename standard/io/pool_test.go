@@ -8,8 +8,9 @@ import (
 	"testing"
 	"time"
 
-	xbufio "github.com/oofpgDLD/go_skill/standard/bufio"
 	"github.com/stretchr/testify/assert"
+
+	xbufio "github.com/danielhookx/go_skill/standard/bufio"
 )
 
 func gen1KB() []byte {

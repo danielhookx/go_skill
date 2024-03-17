@@ -1,6 +1,6 @@
 package factory
 
-//define
+// define
 type JsonRuleConfigParse struct {
 }
 
@@ -8,7 +8,6 @@ func (p *JsonRuleConfigParse) parse(content string) RuleConfig {
 	return RuleConfig{}
 }
 
-//
 type IRuleConfigParserFactory interface {
 	createParser() IRuleConfigParse
 }

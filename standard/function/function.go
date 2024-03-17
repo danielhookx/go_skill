@@ -45,7 +45,6 @@ func (q *Quote) setStructVal(val string) {
 	q.stc.val = val
 }
 
-//
 type Direct struct {
 	val int
 	stc *baseStruct
