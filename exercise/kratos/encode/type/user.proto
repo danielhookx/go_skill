@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package user;
+
+option go_package = ".;user";
+option java_multiple_files = true;
+option java_package = "user";
+
+
+message Field {
+  string f1 = 1;
+  int32 f2 = 2;
+  string f3 = 3;
+  string f4 = 4;
+  int32 f5 = 5;
+  int32 f6 = 6;
+  string f7 = 7;
+}
+
+message User {
+  string field1 = 1;
+  string field2 = 2;
+  string field3 = 3;
+  string field4 = 4;
+  int32 field5 = 5;
+  int32 field6 = 6;
+  string field7 = 7;
+  string field8 = 8;
+  int32 field9 = 9;
+  int32 field10 = 10;
+  int32 field11 = 11;
+  string field12 = 12;
+  repeated Field fs = 13;
+}

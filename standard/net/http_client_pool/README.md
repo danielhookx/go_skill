@@ -1,0 +1,5 @@
+对比是否使用http client的连接池对并发性能产生的影响。
+
+client.out采集了连接池不命中情况下的profile
+
+client_pool.out采集了连接池命中情况下的profile
